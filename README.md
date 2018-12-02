@@ -87,7 +87,86 @@
 }
 ```
 
-2.2 此时我们需要安装依赖包
+> 2.2 此时我们需要安装依赖包
+
+```javascript
+npm install
+```
+
+> 2.3 根目录下新增 webpack.config.js 文件,并添加配置
+
+```javascript
+const path = require("path");
+const webpack = require("webpack");
+const uglify = require("uglifyjs-webpack-plugin");
+
+module.exports = {
+  entry: "./src/index.js", //入口文件，就是在src目录下的index.js文件，
+  output: {
+    path: path.resolve(__dirname, "./dist"), //输出路径dist目录
+    publicPath: "/dist/",
+    filename: "toast.min.js", //打包后输出的文件名字,这里需要和package.json文件下main应该写为:'dist/toast.min.js'
+    libraryTarget: "umd",
+    // 　libraryTarget：为了支持多种使用场景，我们需要选择合适的打包格式。libraryTarget 属性。这是可以控制 library 如何以不同方式暴露的选项。
+    umdNamedDefine: true
+  },
+  externals: {
+    vue: "vue",
+    axios: "axios"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: "vue-loader"
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader"
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "scss-loader"
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\/|vue-router\//,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.(png|jpg|gif|ttf|svg|woff|eot)$/,
+        loader: "url-loader",
+        query: {
+          limit: 30000,
+          name: "[name].[ext]?[hash]"
+        }
+      }
+    ]
+  }
+};
+```
+
+**umdNamedDefine** ![](https://user-gold-cdn.xitu.io/2018/12/3/1676fb5aa071e79c?w=828&h=366&f=png&s=28837)
 
 # 一.创建一个 npm 账号
 
