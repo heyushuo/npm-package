@@ -1,0 +1,143 @@
+/* .animate {
+  -webkit-transition:  all;
+  transition:  all;
+  -webkit-transition-duration:  0.3s;
+  transition-duration:  0.3s; } */
+
+body,
+html,
+p,
+ul,
+li,
+dl,
+dt,
+dd,
+button,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+i,
+a,
+img,
+input,
+textarea,
+select {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-style: normal;
+  font-size: inherit;
+  font-family: "Helvetica Neue", Helvetica, "Microsoft YaHei", Arial, sans-serif;
+  line-height: inherit;
+  font-weight: normal;
+}
+
+li,
+ul,
+ol {
+  list-style: none;
+}
+
+html,
+body {
+  overflow: auto;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+html,
+body {
+  position: relative;
+  margin: 0 auto;
+}
+
+.clearfix,
+.cl {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after,
+.cl:before,
+.cl:after {
+  display: table;
+  line-height: 0;
+  content: " ";
+}
+
+.clearfix:after,
+.cl:after {
+  clear: both;
+}
+
+body,
+html {
+  display: block;
+  height: 100%;
+  max-width: 640px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-overflow-scrolling: touch;
+  color: #333;
+  overflow: auto;
+  position: relative;
+}
+
+.app {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+input,
+button,
+select {
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.loading {
+  background: url("../images/page_load.gif") center center no-repeat;
+  background-size: 60%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.loading {
+  overflow: hidden;
+}
+
+.loading .app {
+  opacity: 0;
+  display: none;
+}
+
+.app {
+  -webkit-transition: all;
+  transition: all;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  opacity: 1;
+  display: block;
+}
