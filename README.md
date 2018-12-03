@@ -114,6 +114,7 @@ module.exports = {
     // 　libraryTarget：为了支持多种使用场景，我们需要选择合适的打包格式。libraryTarget 属性。这是可以控制 library 如何以不同方式暴露的选项。
     umdNamedDefine: true
   },
+  //这里我们可以剔除掉一些通用包,自己的包不打包这些类库,需要用户环境来提供
   externals: {
     vue: "vue",
     axios: "axios"
