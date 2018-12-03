@@ -63,9 +63,14 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
+        new webpack.optimize.UglifyJsPlugin({
+            //输出不显示警告
+            compress: {
+                warnings: false //默认值
+            },
+            //输出去掉注释
+            output: {
+                comments: false //默认值
             }
         })
     ]

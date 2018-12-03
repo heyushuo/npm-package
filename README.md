@@ -125,20 +125,6 @@ module.exports = {
         loader: "vue-loader"
       },
       {
-        test: /\.less$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader"
-          },
-          {
-            loader: "less-loader"
-          }
-        ]
-      },
-      {
         test: /\.scss$/,
         use: [
           {
@@ -165,7 +151,20 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    //压缩js代码
+    new webpack.optimize.UglifyJsPlugin({
+      //输出不显示警告
+      compress: {
+        warnings: false //默认值
+      },
+      //输出去掉注释
+      output: {
+        comments: false //默认值
+      }
+    })
+  ]
 };
 ```
 
