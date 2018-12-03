@@ -1,18 +1,18 @@
 <template>
   <div>
-    <p>我是{{ user.name }}</p>
-    <p>我来自{{ user.from }}</p>
+    <p class="name">{{name}}</p>
   </div>
 </template>
 
 <script>
+  // import axios from 'axios';
   export default {
     data() {
       return {}
     },
     props: {
-      user: {
-        type: Object
+      name: {
+        type: String
       }
     },
     methods: {

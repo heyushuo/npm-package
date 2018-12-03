@@ -49,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\/|vue-router\//,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {

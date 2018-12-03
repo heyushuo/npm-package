@@ -1,2 +1,2 @@
-import payLayer from './paylayer/index.vue'
-export default payLayer
+import toast from './component/index.vue'
+export default toast

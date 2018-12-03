@@ -35,7 +35,7 @@
 
 # 二.配置 webpack 打包 vue 组件和解析文件
 
-> 2.1 在上边 package.json 的基础上我们需要添加**devDependencies** 字段,用来添加项目开发依赖
+> 2.1 在上边 package.json 的基础上我们需要添加**devDependencies** **字段和 dependencies**字段,用来添加项目开发依赖和项目依赖
 
 ```json
 {
@@ -81,11 +81,15 @@
     "vue-template-compiler": "^2.5.9",
     "vuex": "^3.0.1",
     "webpack": "^3.9.1",
-    "axios": "^0.18.0",
     "webpack-dev-server": "^2.9.5"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }
 ```
+
+当用户在下载你的包的时候,devDependencies 字段下依赖包并不会下载,dependencies 字段是必须安装的依赖
 
 > 2.2 此时我们需要安装依赖包
 
@@ -150,15 +154,14 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\/|vue-router\//,
-        loader: "babel-loader"
+        exclude: /node_modules/,
+        loader: "babel-loader" //babel的相关配置在.babelrc文件里
       },
       {
         test: /\.(png|jpg|gif|ttf|svg|woff|eot)$/,
         loader: "url-loader",
         query: {
-          limit: 30000,
-          name: "[name].[ext]?[hash]"
+          limit: 30000 //把一些小图片打包为base64
         }
       }
     ]
@@ -168,12 +171,42 @@ module.exports = {
 
 **umdNamedDefine** ![](https://user-gold-cdn.xitu.io/2018/12/3/1676fb5aa071e79c?w=828&h=366&f=png&s=28837)
 
-# 一.创建一个 npm 账号
+> 2.4 开始开发自己的组件了
 
-1. 首先需要在 npm 创建一个账号
-2. 确保自己当前的镜像是 npm
-3. 在终端执行 npm login 输入你注册的 npm 的账号和密码
-4. npm publish 发布你的包
+在 src 目录下创建一个 index.js 最为 webpack 的入口文件,创建一个 component 文件写自己的组件,common 放一些公用样式或者文件
+
+![](https://user-gold-cdn.xitu.io/2018/12/3/16771b3582628262?w=301&h=257&f=png&s=15846)
+
+在 index.js 文件引入写好的组件,并导出组件
+
+```javascript
+import toast from "./component/index.vue";
+export default toast;
+```
+
+接下来可以执行如下命令,生成需要发布包的文件
+
+```javascript
+npm run build
+```
+
+![](https://user-gold-cdn.xitu.io/2018/12/3/16771bef3567ad1c?w=333&h=365&f=png&s=26180)
+
+```javascript
+//这里打包后的文件与package.json文件内的main字段相对应
+
+"main": "dist/toast.min.js",
+```
+
+到这里第二部就算完成了,大家也可以把自己平时写的组件全部复制过来就可以.
+
+**接下来就是最重要的一步注册 npm 包,发布自己的包**
+
+# 三.创建 npm 账号以及发布流程
+
+1. 首先需要在 [npm](https://www.npmjs.com/) 创建一个账号
+2. 在终端执行 npm login 输入你注册的 npm 的账号和密码
+3. 发布你的包
 
 **这里需要注意:一定要确保本地镜像为 npm,不然无法提交成功**
 
@@ -186,3 +219,31 @@ npm config set registry http://registry.npm.taobao.org/
 // 换成原来的
 npm config set registry https://registry.npmjs.org/
 ```
+
+**npm 发布包的一些相关命令**
+
+```javascript
+npm login           //登录npm
+npm publish         //发布包
+npm unpublish       //删除包
+```
+
+再发布前需要配置.npmignore 文件,忽略一些无用的文件
+
+```
+.*
+/node_modules
+/src
+package-lock.json
+webpack.config.js
+```
+
+**如下图看一下具体执行的过程**
+
+![](https://user-gold-cdn.xitu.io/2018/12/3/16771e84aba6da37?w=777&h=185&f=png&s=38621)
+
+**以上就完成了发布自己的包**
+
+# 四.其他
+
+[封装的组件](http://git.mucang.cn/heyushuo/vue-vip-demo)
