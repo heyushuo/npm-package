@@ -226,6 +226,7 @@ npm config set registry https://registry.npmjs.org/
 npm login           //登录npm
 npm publish         //发布包
 npm unpublish       //删除包
+npm unpublish 包名 --force
 ```
 
 再发布前需要配置.npmignore 文件,忽略一些无用的文件
